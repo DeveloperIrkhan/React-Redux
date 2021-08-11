@@ -18,7 +18,7 @@ export const Inputpage = () => {
             </div>
             <div className="container align-content-center text-center">
                 <h2 style={{ color: "#282c34" }} >Increment & Decrement using React-Redux</h2>
-                <div className="quantity">
+                <div className="quantity col-lg-6 col-12">
                     <a
                         onClick={() => { dispatch(decNumber()) }}
                         className="minus" title="Minus"><span>-</span></a>

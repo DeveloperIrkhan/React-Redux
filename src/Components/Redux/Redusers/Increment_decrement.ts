@@ -1,6 +1,6 @@
 import { Action } from "redux";
 
-const initialState = 10;
+const initialState = 0;
 const changeTheNumber = (state = initialState, action:Action) =>{
     switch (action.type) {
         case "INCREMENT":

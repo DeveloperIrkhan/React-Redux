@@ -1,35 +1,32 @@
-import React, { ChangeEvent, useState } from 'react';
-
-interface NoteToInput {
-    addNote(note:string):void;
-}
-export const Inputpage:React.FC<NoteToInput> = ({addNote}) => {
-    const [note , setnote]=useState("")
-    const updateNote = (evnt:ChangeEvent<HTMLInputElement>) =>{
-        setnote(evnt.target.value)
-    }
-    const onClickAdd = ()=>{
-        addNote(note);
-        setnote("")
-    }
+import * as React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { incNumber, decNumber } from '../Components/Redux/Actions/Action'
+import { Store } from './Redux/Store/Store.js';
+type RootState = ReturnType<typeof Store.getState>;
+export const Inputpage = () => {
+    const count = useSelector((state: RootState) => state.changeTheNumber);
+    const dispatch = useDispatch();
     return (
         <div className="">
-            <div className="">
-                <h2 className="text-danger">This is For React Redux in TypeScript</h2>
+            <div className="App container p-5">
+                <h1
+                    style={{ backgroundColor: "#282c34" }}
+                    className="
+                      text-capitalize
+                      text-white p-2
+                      ">Welcome to redux</h1>
             </div>
-            <div className="mt-5">
-                <input 
-                    type="text" 
-                    placeholder="Enter something add to list...." 
-                    className="form-control" 
-                    value={note}
-                    onChange={updateNote}
-                    name="note"/>
-            </div>
-            <div className="col my-5">
-                <button 
-                    onClick={onClickAdd}
-                    className="col-3 rounded-pill btn btn-outline-danger">Note!</button>
+            <div className="container align-content-center text-center">
+                <h2 style={{ color: "#282c34" }} >Increment & Decrement using React-Redux</h2>
+                <div className="quantity">
+                    <a
+                        onClick={() => { dispatch(decNumber()) }}
+                        className="minus" title="Minus"><span>-</span></a>
+                    <input name='quantity' className="quantity_input" value={count} type="text" />
+                    <a
+                        onClick={() => { dispatch(incNumber()) }}
+                        className="plus" title="Plus"><span>+</span></a>
+                </div>
             </div>
         </div>
     )
